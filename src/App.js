@@ -15,13 +15,13 @@ class App extends Component {
   // }
   render() {
     return (
-      <div>
-        <h1>Acme Pager</h1>
+      <div className="main-container">
+        <h1>Acme Pager React Redux</h1>
         <HashRouter>
           <Route
             path="/:page?"
             render={props => (
-              <main>
+              <main className="table-nav">
                 {this.props.load(props.match.params.page)}
                 <Table {...props} />
                 <PageNum {...props} />

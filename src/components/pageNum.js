@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const PageNum = ({ count, match, location, rows }) => {
-  console.log("PAGENUM!!!!!", rows);
-  let {
-    params: { page }
-  } = match;
+const PageNum = ({ count, location }) => {
   const pageCount = Math.ceil(count / 50);
   const currentPage = parseInt(location.pathname.slice(1));
   //   console.log("PAGECOUNT!!!", page);
@@ -17,7 +13,7 @@ const PageNum = ({ count, match, location, rows }) => {
   console.log(links);
   //   console.log("PAGENUM!!!!!", page);
   return (
-    <nav>
+    <nav className="nav-bar">
       <Link to={currentPage - 1 >= 0 && `${currentPage - 1}`}>Prev</Link>
       {links.map((link, idx) => (
         <Link to={`/${idx}`}>{`${link + 1}`}</Link>
@@ -27,8 +23,8 @@ const PageNum = ({ count, match, location, rows }) => {
   );
 };
 
-const mapStateToProps = ({ count, rows }) => {
-  return { count, rows };
+const mapStateToProps = ({ count }) => {
+  return { count };
 };
 
 export default connect(mapStateToProps)(PageNum);
